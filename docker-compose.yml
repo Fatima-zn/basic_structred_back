@@ -1,0 +1,32 @@
+services:
+  nest-db:
+    image: postgres:15.7
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: ace_nest
+      POSTGRES_PASSWORD: 789fu6eI
+      POSTGRES_DB: nest_database
+    volumes:
+      - postgres-prod-data:/var/lib/postgresql/data
+    networks:
+      - nest-network
+  test-db:
+    image: postgres:15.7
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: ace_nest
+      POSTGRES_PASSWORD: 789fu6eI
+      POSTGRES_DB: nest_database
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    networks:
+      - nest-network
+  
+volumes:
+  postgres-prod-data:
+  postgres-test-data:
+networks:
+  nest-network:
+
